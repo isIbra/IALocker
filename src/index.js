@@ -1,22 +1,23 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-app.use(express.json());
 
-// Define routes for communication with the ESP32
-app.post('/esp', (req, res) => {
-  console.log('a vistor');
-  const dataFromESP32 = req.body;
+// Generate a random 4-digit passcode from 0-9
+function generatePasscode() {
+  const passcode = Math.floor(Math.random() * 10000).toString();
+  return passcode.padStart(4, '0');
+}
 
-  console.log('Received data from ESP32:', req.body); //receing data from ESP32
-  res.send('Data received successfully');
+// Create an API endpoint to send the passcode to the Arduino
+app.get('/passcode', (req, res) => {
+  // Generate a passcode
+  const passcode = generatePasscode();
+
+  // Respond to the request with just the passcode as a string
+  res.send(passcode);
 });
 
-app.get('/esp', (req, res) => {
-  //checking for esp32
-  console.log('a vistor');
-});
-
+// Start the server
 app.listen(port, '192.168.100.13', () => {
   console.log(`Express server listening at http://192.168.100.13:${port}`);
 });

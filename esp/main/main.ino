@@ -1,59 +1,56 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <EEPROM.h>
 
-const char *ssid = "ALOMRAN";
-const char *password = "Asd-12345";
-const char *serverUrl = "http://192.168.100.13:3000/esp"; // Replace with your server's local IP
+const char* ssid = "ALOMRAN";
+const char* password = "Asd-12345";
+const char* serverUrl = "http://192.168.100.13:3000/passcode";
 
-const int ledPin = 2; // GPIO pin connected to the built-in LED
-bool ledState = LOW;
+String passcode = "";
 
-void setup()
-{
-    // Initialize serial communication at 115200 baud rate
-    Serial.begin(115200);
+void setup() {
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
 
-    // Initialize the LED pin as an output
-    pinMode(ledPin, OUTPUT);
-    digitalWrite(ledPin, LOW); // Turn off the LED initially
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.println("Connecting to WiFi...");
+  }
 
-    // Connect to Wi-Fi
-    WiFi.begin(ssid, password);
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        delay(1000);
-        Serial.println("Connecting to WiFi...");
-    }
-    Serial.println("Connected to WiFi");
+  Serial.println("Connected to the WiFi network");
+
+  // Set GPIO 2 (built-in LED) as an output
+  pinMode(2, OUTPUT);
 }
 
-void loop()
-{
-    // Simulate temperature data (replace with actual sensor reading)
-    float temperature = random(20, 30); // Simulate a temperature between 20 and 30 degrees Celsius
+void loop() {
+  // Create an HTTPClient object
+  HTTPClient http;
 
-    // Create JSON data
-    String jsonData = "{\"temperature\": " + String(temperature) + "}";
+  // Connect to the server
+  http.begin(serverUrl);
 
-    // Send data to the server
-    HTTPClient http;
-    http.begin(serverUrl);
-    http.addHeader("Content-Type", "application/json");
-    int httpResponseCode = http.POST(jsonData);
-    if (httpResponseCode > 0)
-    {
-        Serial.print("HTTP Response code: ");
-        Serial.println(httpResponseCode);
-        // Toggle the LED state after a successful request
-        ledState = !ledState;
-        digitalWrite(ledPin, ledState);
-    }
-    else
-    {
-        Serial.println("HTTP POST failed");
-    }
-    http.end();
+  // Make a GET request
+  int httpCode = http.GET();
 
-    // Wait for a while before sending the next data (e.g., every 10 seconds)
-    delay(10000);
+  // Check the response code
+  if (httpCode == HTTP_CODE_OK) {
+    // Get the passcode from the response
+    passcode = http.getString();
+
+    // Print the passcode to the serial monitor
+    Serial.println("Passcode received:");
+    Serial.println(passcode);
+
+    // Light up the built-in LED for 2 seconds (you can adjust this duration)
+    digitalWrite(2, HIGH);
+    delay(2000);
+    digitalWrite(2, LOW);
+  } else {
+    Serial.print("Error receiving passcode! HTTP code: ");
+    Serial.println(httpCode);
+  }
+
+  // Delay for 1 second
+  delay(1000);
 }
