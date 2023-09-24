@@ -21,9 +21,21 @@ void setup() {
 
   // Set GPIO 2 (built-in LED) as an output
   pinMode(2, OUTPUT);
+
+  // Fetch the passcode once during setup
+  fetchPasscode();
 }
 
 void loop() {
+  // Your main program logic here
+  
+  // For example, you can add code to check the passcode and control the lock
+  
+  // Delay for 1 second
+  delay(1000);
+}
+
+void fetchPasscode() {
   // Create an HTTPClient object
   HTTPClient http;
 
@@ -39,7 +51,7 @@ void loop() {
     passcode = http.getString();
 
     // Print the passcode to the serial monitor
-    Serial.println("Passcode received:");
+    Serial.println("Passcode received during setup:");
     Serial.println(passcode);
 
     // Light up the built-in LED for 2 seconds (you can adjust this duration)
@@ -47,10 +59,7 @@ void loop() {
     delay(2000);
     digitalWrite(2, LOW);
   } else {
-    Serial.print("Error receiving passcode! HTTP code: ");
+    Serial.print("Error receiving passcode during setup! HTTP code: ");
     Serial.println(httpCode);
   }
-
-  // Delay for 1 second
-  delay(1000);
 }
