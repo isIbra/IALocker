@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3001;
 
-let savedPasscodes = [];
+let savedPasscodes = ['1234', '5679', '9876']; // placeholders... also generated code from the front end will work
 
 // Create an API endpoint to send the passcode to the Arduino
 app.get('/passcode', (req, res) => {
@@ -14,24 +14,28 @@ app.get('/passcode', (req, res) => {
   res.send(passcode);
 });
 
-// check validity of code
+// Endpoint to check if a passcode is valid
 app.get('/checkPasscode', (req, res) => {
-  console.log('req: ', req.query.passcode);
-  let isValidPasscode = passcodeChecker(req.query.passcode);
+  const enteredPasscode = req.query.passcode;
 
-  res.send(isValidPasscode);
+  // Check if the entered passcode is in the valid passcodes array
+  const isValidPasscode = savedPasscodes.includes(enteredPasscode);
+
+  // Respond with true or false
+  res.send(isValidPasscode.toString());
 });
+
 // Passcode Generation:
 function generatePasscode() {
   const passcode = Math.floor(Math.random() * 10000).toString();
   return passcode.padStart(4, '0');
 }
 //Passcode Checker
-function passcodeChecker(passcode){
-  return savedPasscodes.find(a => a == passcode) != null;
+function passcodeChecker(passcode) {
+  return savedPasscodes.find((a) => a == passcode) != null;
 }
 
 // Start the server
-app.listen(port, 'localhost', () => {
-  console.log(`Express server listening at http://localhost:${port}`);
+app.listen(port, '192.168.100.13', () => {
+  console.log(`Express server listening at http://192.168.100.13:${port}`);
 });
