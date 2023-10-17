@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3001;
 
-let savedPasscodes = ['1234', '5679', '9876']; // placeholders... also generated code from the front end will work
+let savedPasscodes = ['1234', '5679', '9876', '8888']; // placeholders... also generated code from the front end will work
 
 // Create an API endpoint to send the passcode to the Arduino
 app.get('/passcode', (req, res) => {
