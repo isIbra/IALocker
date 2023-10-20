@@ -1,5 +1,18 @@
 .App {
   text-align: center;
+  align-items: center;
+  margin: auto;
+}
+.Main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Paragraph {
+  padding: 0.2rem;
+  border-radius: 20%;
+  background-color: rgb(19, 79, 156);
 }
 
 .App-logo {
@@ -14,7 +27,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #284068;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

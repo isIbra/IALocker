@@ -1,42 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
-import React, { useState } from 'react';
+import Card from './component/Card/Card'; // Import the Card component
+
 function App() {
-  const [codes, setCodes] = useState(['']);
-
-  // get code from backend
-  const generateCode = () => {
-    axios
-      .get('http://192.168.100.13:3001/passcode')
-      .then((response) => {
-        console.log('response: ', response.data);
-        setCodes((oldCodes) => [...oldCodes, response.data]);
-      })
-      .catch((e) => console.log('error: ', e));
-    return '';
-  };
-
-  // display codes
-  const codesToString = () => {
-    let string = '';
-    codes.forEach((code) => {
-      string = string + ' ' + code;
-    });
-    return string;
-  };
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div>
-          {/* <input type="text" name="name" /> */}
-          <button onClick={generateCode}>Generate Code</button>
-          <br />
-          <text>{codesToString()}</text>
+        <div className="Main">
+          <Card
+            title="Locker"
+            content="Click on the button to generate a new Passcode"
+            imageUrl="https://example.com/your-image-url.jpg"
+          />
         </div>
       </header>
     </div>
