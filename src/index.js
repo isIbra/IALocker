@@ -1,8 +1,28 @@
 const express = require('express');
+const bodyParser = require('body-parser')
+const cors = require('cors');
+const db = require('./queries')
 const app = express();
 const port = 3001;
 
+app.use(cors());
+app.use(bodyParser.json())
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
+
 let savedPasscodes = ['1234', '5679', '9876', '8888']; // placeholders... also generated code from the front end will work
+
+//temp endpoints
+app.get('/users', db.getUsers)
+app.get('/users/:id', db.getUserById)
+app.post('/users', db.createUser)
+app.put('/users/:id', db.updateUser)
+app.delete('/users/:id', db.deleteUser)
+app.post('/addPasscode', db.addPasscode)
+app.delete('/deletePasscode', db.deletePasscode)
 
 // Create an API endpoint to send the passcode to the Arduino
 app.get('/passcode', (req, res) => {
@@ -25,6 +45,7 @@ app.get('/checkPasscode', (req, res) => {
   res.send(isValidPasscode.toString());
 });
 
+
 // Passcode Generation:
 function generatePasscode() {
   const passcode = Math.floor(Math.random() * 10000).toString();
@@ -36,6 +57,6 @@ function passcodeChecker(passcode) {
 }
 
 // Start the server
-app.listen(port, '192.168.100.13', () => {
-  console.log(`Express server listening at http://192.168.100.13:${port}`);
+app.listen(port, () => {
+  console.log(`Express server listening at http://192.168.100.7:${port}`);
 });

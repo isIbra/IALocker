@@ -7,7 +7,7 @@ const Card = ({ title, content, imageUrl }) => {
 
   const generateCode = () => {
     axios
-      .get('http://192.168.100.13:3001/passcode')
+      .get('http://localhost:3001/passcode')
       .then((response) => {
         console.log('response: ', response.data);
         setCodes((oldCodes) => [...oldCodes, response.data]);
