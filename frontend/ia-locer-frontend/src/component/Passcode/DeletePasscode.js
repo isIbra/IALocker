@@ -7,11 +7,11 @@ const DeletePasscodeComponent = () => {
     const handleDeletePasscode = () => {
         axios.delete(`http://localhost:3001/deletePasscode/${passcodeId}`)
             .then(response => {
-                console.log('Passcode deleted successfully!', response);
-                // You can add further logic or state updates on successful deletion
+                console.log(`Passcode with ID ${passcodeId} deleted successfully!`, response);
+                // You can add further logic or state updates on success
             })
             .catch(error => {
-                console.error('Failed to delete passcode', error);
+                console.error(`Failed to delete passcode with ID ${passcodeId}`, error);
                 // Handle errors, show messages, etc.
             });
     };

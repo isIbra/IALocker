@@ -1,0 +1,17 @@
+/* Define the style for the "X" button */
+.passcode-item {
+    position: relative;
+    list-style: none;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.passcode-delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

@@ -21,3 +21,18 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Dependency lock files
+
+# Editor directories/files
+.idea/
+.vscode/
+*.iml
+*.idea
+
+# Prettier
+.prettierrc          # Add this line

@@ -22,7 +22,9 @@ app.post('/users', db.createUser)
 app.put('/users/:id', db.updateUser)
 app.delete('/users/:id', db.deleteUser)
 app.post('/addPasscode', db.addPasscode)
-app.delete('/deletePasscode', db.deletePasscode)
+app.delete('/deletePasscode/:id', db.deletePasscode);
+app.get('/passcodes', db.getPasscodes);
+
 
 // Create an API endpoint to send the passcode to the Arduino
 app.get('/passcode', (req, res) => {
@@ -58,5 +60,5 @@ function passcodeChecker(passcode) {
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Express server listening at http://192.168.100.7:${port}`);
+  console.log(`Express server listening at http://localhost:${port}`);
 });

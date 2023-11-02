@@ -2,6 +2,7 @@ import './App.css';
 import Card from './component/Card/Card'; // Import the Card component
 import AddPasscodeComponent from './component/Passcode/AddPasscode';
 import DeletePasscodeComponent from './component/Passcode/DeletePasscode';
+import GetPasscodeComponents from './component/Passcode/GetPasscode';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         </div>
         <AddPasscodeComponent/>
         <DeletePasscodeComponent/>
+        <GetPasscodeComponents />
       </header>
     </div>
   );
