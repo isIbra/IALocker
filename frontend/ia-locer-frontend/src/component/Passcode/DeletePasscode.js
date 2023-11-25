@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const DeletePasscodeComponent = () => {
+ const DeletePasscodeByIdComponent = () => {
     const [passcodeId, setPasscodeId] = useState(''); // State to hold passcode ID value
 
-    const handleDeletePasscode = () => {
-        axios.delete(`http://localhost:3001/deletePasscode/${passcodeId}`)
+    const handleDeleteByIdPasscode = () => {
+        axios.delete(`http://localhost:3001/deletePasscodeById/${passcodeId}`)
             .then(response => {
                 console.log(`Passcode with ID ${passcodeId} deleted successfully!`, response);
-                // You can add further logic or state updates on success
             })
             .catch(error => {
                 console.error(`Failed to delete passcode with ID ${passcodeId}`, error);
-                // Handle errors, show messages, etc.
             });
     };
 
@@ -24,11 +22,11 @@ const DeletePasscodeComponent = () => {
                 value={passcodeId}
                 onChange={(e) => setPasscodeId(e.target.value)}
             />
-            <button onClick={handleDeletePasscode}>
+            <button onClick={handleDeleteByIdPasscode}>
                 Delete Passcode
             </button>
         </div>
     );
 };
 
-export default DeletePasscodeComponent;
+export default DeletePasscodeByIdComponent;

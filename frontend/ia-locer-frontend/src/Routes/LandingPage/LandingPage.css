@@ -1,0 +1,33 @@
+.background {
+  background-image: url('../../../public/Images/Vector\ 1.png');
+  background-image: url('../../../public/Images/Picture1\ 2.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Arial, sans-serif';
+  /* Replace with the font used in the design if different */
+}
+
+.title-container {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 4em;
+}
+
+.reserve-button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

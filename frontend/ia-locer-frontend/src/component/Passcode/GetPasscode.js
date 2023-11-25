@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Passcode.css'
+import './Passcode.css';
 
 const GetPasscodesComponent = () => {
     const [passcodes, setPasscodes] = useState([]);
@@ -9,6 +9,7 @@ const GetPasscodesComponent = () => {
     useEffect(() => {
         if (fetched) {
             fetchPasscodes();
+            setFetched(false); // Reset the fetched state after fetching
         }
     }, [fetched]);
 
@@ -19,7 +20,6 @@ const GetPasscodesComponent = () => {
             })
             .catch(error => {
                 console.error('Failed to fetch passcodes', error);
-                // Handle errors, show messages, etc.
             });
     };
 
@@ -28,13 +28,12 @@ const GetPasscodesComponent = () => {
     };
 
     const handleDelete = (passcodeId) => {
-        axios.delete(`http://localhost:3001/deletePasscode/${passcodeId}`)
+        axios.delete(`http://localhost:3001/deletePasscodeById/${passcodeId}`)
             .then(() => {
                 setPasscodes(passcodes.filter(passcode => passcode.id !== passcodeId));
             })
             .catch(error => {
                 console.error(`Failed to delete passcode with ID ${passcodeId}`, error);
-                // Handle errors, show messages, etc.
             });
     };
 

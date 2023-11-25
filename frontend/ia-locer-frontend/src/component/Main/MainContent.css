@@ -1,0 +1,57 @@
+.middle-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    background-color: #f2f2f2;
+    border-radius: 15px;
+    margin: 2%;
+    margin-top: 0%;
+    border: rgb(29, 30, 68) solid 3px;
+
+}
+
+.profile-photo {
+    width: 100px;
+    height: 100px;
+    margin-right: 5px;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.name {
+    border-left: rgb(29, 30, 68) solid 3px;
+    border-right: rgb(29, 30, 68) solid 3px;
+    padding: 2.5rem;
+    font-size: 24px;
+    font-weight: bold;
+    margin: initial;
+
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.dynamic-content {
+    flex: 2000;
+    background-color: white;
+    padding: 10px;
+}
+
+.show-password-button {
+    /* flex: 0.1; */
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

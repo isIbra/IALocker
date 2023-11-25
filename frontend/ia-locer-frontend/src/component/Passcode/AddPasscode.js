@@ -15,30 +15,30 @@ const AddPasscodeComponent = () => {
         axios.post('http://localhost:3001/addPasscode', passcodeData)
             .then(response => {
                 console.log('Passcode added successfully!', response);
-                // You can add further logic or state updates on success
             })
             .catch(error => {
                 console.error('Failed to add passcode', error);
-                // Handle errors, show messages, etc.
             });
     };
 
     return (
-        <div>
+        <div className='Add-Passcode-Container'>
             <input
+                className='AddPasscode-input'
                 type="text"
                 placeholder="Enter Passcode"
                 value={passcode}
                 onChange={(e) => setPasscode(e.target.value)}
             />
             <input
+                className='AddPasscode-input'
                 type="text"
                 placeholder="Enter User ID (Optional)"
                 value={userId}
                 onChange={(e) => setUserId(e.target.value)}
             />
-            <button onClick={handleAddPasscode}>
-                Add Passcode
+            <button className='AddPasscode-button' onClick={handleAddPasscode}>
+                Add
             </button>
         </div>
     );

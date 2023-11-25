@@ -22,8 +22,15 @@ app.post('/users', db.createUser)
 app.put('/users/:id', db.updateUser)
 app.delete('/users/:id', db.deleteUser)
 app.post('/addPasscode', db.addPasscode)
-app.delete('/deletePasscode/:id', db.deletePasscode);
+app.delete('/deletePasscodeById/:id', db.deletePasscodeById);
+app.delete('/deletePasscodeByCode/:id', db.deletePasscodeByCode);
 app.get('/passcodes', db.getPasscodes);
+
+//sign in
+app.post('/signin', db.validateSignIn);
+app.post('/signin', db.validateSignIn);
+
+
 
 
 // Create an API endpoint to send the passcode to the Arduino

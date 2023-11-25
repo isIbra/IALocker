@@ -1,25 +1,25 @@
-import './App.css';
-import Card from './component/Card/Card'; // Import the Card component
-import AddPasscodeComponent from './component/Passcode/AddPasscode';
-import DeletePasscodeComponent from './component/Passcode/DeletePasscode';
-import GetPasscodeComponents from './component/Passcode/GetPasscode';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LandingPage from './Routes/LandingPage/LandingPage';
+import Home from './Routes/Home/Home';
+import Navbar from './component/Navbar/Navbar';
+import Footer from './component/Footer/Footer';
+import SignIn from './Routes/SignIn/SingIn';
+import './App.css'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="Main">
-          <Card
-            title="Locker"
-            content="Click on the button to generate a new Passcode"
-            imageUrl="https://example.com/your-image-url.jpg"
-          />
-        </div>
-        <AddPasscodeComponent/>
-        <DeletePasscodeComponent/>
-        <GetPasscodeComponents />
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signin" element={<SignIn />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 
