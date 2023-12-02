@@ -20,3 +20,18 @@
     font-weight: bold;
     font-size: 1.2rem;
 }
+
+.navbar li:last-child {
+    margin-left: auto;
+}
+
+.sign-out-button {
+    background-color: #fff;
+    color: #333;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: none;
+}

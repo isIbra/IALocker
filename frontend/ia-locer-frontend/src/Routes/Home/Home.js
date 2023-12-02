@@ -23,9 +23,6 @@ function Home() {
           dynamicContent="Dynamic Content for Locker 2"
           buttonText="Show My Password"
         />
-        <AddPasscodeComponent />
-        <DeletePasscodeByCodeComponent />
-        <GetPasscodeComponents />
       </div>
     </div>
   );

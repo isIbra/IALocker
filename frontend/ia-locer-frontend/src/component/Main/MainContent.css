@@ -10,7 +10,7 @@
     margin: 2%;
     margin-top: 0%;
     border: rgb(29, 30, 68) solid 3px;
-
+    box-shadow: 0px 0px 50px 20px rgb(2 2 2 / 42%);
 }
 
 .profile-photo {
@@ -24,6 +24,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .name {
@@ -32,26 +33,33 @@
     padding: 2.5rem;
     font-size: 24px;
     font-weight: bold;
-    margin: initial;
-
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
-.spacer {
-    flex-grow: 1;
-}
+
 
 .dynamic-content {
-    flex: 2000;
-    background-color: white;
-    padding: 10px;
+    display: flex;
+    background-color: rgb(29, 30, 68);
+    padding: 1rem 7rem 1rem 7rem;
+    color: #f2f2f2;
+    flex-direction: row;
+    box-shadow: inset 0px 0px 11px 8px rgb(2 2 2 / 42%);
+    border-radius: 5px;
 }
 
 .show-password-button {
-    /* flex: 0.1; */
     background-color: #007bff;
     color: white;
-    padding: 10px 20px;
+    padding: 1rem 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.dynamic-contnet-container {
+    display: flex;
+    margin-right: auto;
 }

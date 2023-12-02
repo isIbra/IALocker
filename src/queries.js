@@ -107,37 +107,61 @@ const getPasscodes = (request, response) => {
         response.status(200).json(results.rows);
     });
 };
+
+const checkPasscode = (request, response) => {
+    const enteredPasscode = request.query.passcode;
+
+    // Query the database to check if the passcode exists
+    pool.query('SELECT * FROM passcode WHERE passcode = $1', [enteredPasscode], (error, results) => {
+        if (error) {
+            throw error;
+        }
+
+        // Check if the passcode exists in the database
+        const isValidPasscode = results.rows.length > 0;
+
+        // Respond with true or false
+        response.send(isValidPasscode.toString());
+        if (response.status == true) {
+            console("locker opened")
+        }
+    });
+};
+
+// Front end
 const validateSignIn = (request, response) => {
     const { email, password } = request.body;
-  
+
     // Check if the email and password are provided
     if (!email || !password) {
-      return response.status(400).json({ error: 'Email and password are required.' });
+        return response.status(400).json({ error: 'Email and password are required.' });
     }
-  
+
     // Query the database to find a user with the provided email
     pool.query('SELECT * FROM users WHERE email = $1', [email], (error, results) => {
-      if (error) {
-        throw error;
-      }
-  
-      // Check if the user with the given email exists
-      if (results.rows.length === 0) {
-        return response.status(401).json({ error: 'Invalid email or password.' });
-      }
-  
-      // In a real-world scenario, you would compare the hashed password using bcrypt
-      // For simplicity, let's compare the plain text password for now
-      const user = results.rows[0];
-      if (user.password === password) {
-        // Passwords match, sign-in successful
-        return response.status(200).json({ success: true });
-      } else {
-        // Passwords do not match
-        return response.status(401).json({ error: 'Invalid email or password.' });
-      }
+        if (error) {
+            throw error;
+        }
+
+        // Check if the user with the given email exists
+        if (results.rows.length === 0) {
+            return response.status(401).json({ error: 'Invalid email or password.' });
+        }
+
+        const user = results.rows[0];
+
+        // In a real-world scenario, you would compare the hashed password using bcrypt
+        // For simplicity, let's compare the plain text password for now
+        if (user.password === password) {
+            // Passwords match, sign-in successful
+            const { id, name, email, role } = user;
+            return response.status(200).json({ success: true, user: { id, name, email, role } });
+        } else {
+            // Passwords do not match
+            return response.status(401).json({ error: 'Invalid email or password.' });
+        }
     });
-  };
+};
 
 
 
@@ -152,4 +176,5 @@ module.exports = {
     deletePasscodeByCode,
     getPasscodes,
     validateSignIn,
+    checkPasscode
 }

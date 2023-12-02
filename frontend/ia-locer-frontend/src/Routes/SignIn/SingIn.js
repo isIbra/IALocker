@@ -1,33 +1,38 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useHistory
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../component/Auth/AuthContext'; // Import useAuth
 import './SignIn.css';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const history = useNavigate(); // Initialize useHistory
+  const navigate = useNavigate(); // Initialize useNavigate
+  const { signIn } = useAuth(); // Initialize useAuth
 
   const handleSignIn = async () => {
     try {
-      // Send a POST request to your backend endpoint for sign-in
       const response = await axios.post('http://localhost:3001/signin', {
         email: email,
         password: password,
       });
 
-      // Check the response from the server
       if (response.data.success) {
+        // Save user data in the context
+        signIn(response.data.user);
+
         console.log('Sign-in successful!');
-        // Redirect to the home page upon successful sign-in
-        history('/home');
+        // Redirect to the home page or admin dashboard based on the role
+        if (response.data.user.role === 'Admin') {
+          navigate('/AdminDashboard');
+        } else {
+          navigate('/home');
+        }
       } else {
         console.log('Invalid email or password.');
-        // Handle unsuccessful sign-in (e.g., display an error message)
       }
     } catch (error) {
       console.error('Error during sign-in:', error);
-      // Handle other errors (e.g., network issues)
     }
   };
 

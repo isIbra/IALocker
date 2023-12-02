@@ -1,0 +1,86 @@
+.background {
+    background-image: url('../../../public/Images/Vector\ 1.png');
+    background-image: url('../../../public/Images/Picture1\ 2.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Arial, sans-serif';
+    /* Replace with the font used in the design if different */
+}
+
+.about-paragraph-container {
+    font-family: sans-serif;
+    margin-bottom: 5rem;
+
+}
+
+.about-title-container {
+    font-family: sans-serif;
+    font-size: larger;
+    margin: 0 auto 0 3rem;
+}
+
+.title-container {
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 4em;
+}
+
+.reserve-button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.down-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90rem;
+    margin-top: 20rem;
+}
+
+.about-img {
+    flex: 1;
+    size: 1rem;
+}
+
+.about-contact-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    align-items: center;
+}
+
+.downsection-email-details1 {
+    border-top: whitesmoke solid 1px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.downsection-email-details2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.downsection-email-icon {
+    size: 1rem;
+    margin-right: 0.5rem;
+}
