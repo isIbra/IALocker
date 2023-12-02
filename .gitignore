@@ -11,6 +11,7 @@ yarn-error.log
 .vscode/
 *.iml
 *.idea
+.DS_Store
 
 # Prettier
-.prettierrc          # Add this line
+.prettierrc          
