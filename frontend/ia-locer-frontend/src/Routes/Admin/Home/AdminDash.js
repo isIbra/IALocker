@@ -5,11 +5,12 @@ import GetPasscodesComponent from '../../../component/Passcode/GetPasscode';
 import MiddleSection from '../../../component/Main/MainContent';
 
 function AdminDashboard() {
+  const isDisabled = true;
   return (
     <div className="App">
       <div className='home-container'>
         <MiddleSection
-          name="Locker 1"
+          name="Locker 55"
           dynamicContent="Dynamic Content for Locker 1"
           buttonText="Show Password"
         />
@@ -17,11 +18,10 @@ function AdminDashboard() {
           name="Locker 2"
           dynamicContent="Dynamic Content for Locker 2"
           buttonText="Show Password"
+          disabled={isDisabled}
         />
-
         <AddPasscodeComponent />
         <DeletePasscodeByCodeComponent />
-        <GetPasscodesComponent />
       </div>
     </div>
   );

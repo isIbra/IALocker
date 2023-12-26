@@ -3,27 +3,6 @@ import './MainContent.css';
 import axios from 'axios';
 
 function MiddleSection({ name, dynamicContent, buttonText, disabled }) {
-  const [codes, setCodes] = useState(['']);
-
-  // const generateCode = () => {
-  //   axios
-  //     .get('http://localhost:3001/passcode')
-  //     .then((response) => {
-  //       console.log('response: ', response.data);
-  //       setCodes((oldCodes) => [...oldCodes, response.data]);
-  //     })
-  //     .catch((e) => console.log('error: ', e));
-  //   return '';
-  // };
-
-  // // display codes
-  // const codesToString = () => {
-  //   let string = '';
-  //   codes.forEach((code) => {
-  //     string = string + ' ' + code;
-  //   });
-  //   return string;
-  // };
 
   const [passcodes, setPasscodes] = useState([]);
   const [fetched, setFetched] = useState(false);
@@ -75,7 +54,8 @@ function MiddleSection({ name, dynamicContent, buttonText, disabled }) {
           </ul>
         </div>
       </div>
-      <button className='show-password-button' onClick={handleFetch}>
+      <button className='show-password-button' onClick={handleFetch} disabled={false}
+      >
         {buttonText}
       </button>
     </div>

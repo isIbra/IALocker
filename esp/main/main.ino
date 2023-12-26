@@ -3,10 +3,10 @@
 #include <EEPROM.h>
 #include <Keypad.h>
 
-const char* ssid = "ALOMRAN";
-const char* password = "Asd-12345";
-const char* GeneratorAPI = "http://192.168.100.13:3001/passcode";
-const char* CheckerAPI = "http://192.168.100.13:3001/checkPasscode";
+const char* ssid = "Ibra";
+const char* password = "12344321";
+const char* GeneratorAPI = "http://192.168.1.51:3001/passcode";
+const char* CheckerAPI = "http://192.168.1.51:3001/checkPasscode";
 
 #define RELAY_PIN 27 // Change to GPIO pin 19 for the solenoid lock
 
